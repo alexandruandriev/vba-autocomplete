@@ -10,7 +10,14 @@ test_regex = objRegex.Test(Text)
 
 End Function
 
+Function test_company(name As String) As Boolean
+
+test_company = test_regex("Stimate\s+client(?!\w)", name)
+
+End Function
+
 Function test_client_code(client_code As String) As Boolean
+
 test_client_code = test_regex("C[\d]{8}(?!\d)(?!\w)", client_code)
 
 End Function
@@ -27,11 +34,10 @@ test_domnule = test_regex("Domnule[\s\w]+", name)
 
 End Function
 
-Function test_furnizor(denumire As String) As Boolean
-
-test_furnizor = test_regex("Enel\sEnergie\sS.A[\s\w\\]+.A", denumire)
-
+Function test_furnizor(name As String) As Boolean
+test_furnizor = test_regex = "Enel\s+Energie\s+S.A\s+\\ Enel\s+Energie\s+Muntenia\s+S.A"
 End Function
+
 
 
 
@@ -40,6 +46,11 @@ End Function
 
 'Get Functions
 '---------------------------
+Function get_company_pattern() As String
+    get_company_pattern = "Stimate\s+client(?!\w)"
+End Function
+
+
 Function get_client_code_pattern() As String
 
     get_client_code_pattern = "C[\d]{8}(?!\d)(?!\w)"
@@ -48,19 +59,31 @@ End Function
 
 Function get_doamna_pattern() As String
 
-    get_doamna_pattern = "Doamna[\s\w]+"
+    get_doamna_pattern = "Stimata\s+Doamna[\s\w]+"
     
 End Function
 
 Function get_domnule_pattern() As String
 
-    get_domnule_pattern = "Domnule[\s\w]+"
+    get_domnule_pattern = "Stimate\s+Domnule[\s\w]+"
     
 End Function
 
 Function get_furnizor_pattern() As String
 
-    get_furnizor_pattern = "Enel\sEnergie\sS.A[\s\w\\]+.A"
+    get_furnizor_pattern = "Enel\s+Energie\s+S.A\s+\\ Enel\s+Energie\s+Muntenia\s+S.A"
+    
+End Function
+
+Function get_ee_pattern() As String
+
+    get_ee_pattern = "Enel\s+Energie\s+S.A"
+    
+End Function
+
+Function get_em_pattern() As String
+
+    get_em_pattern = "Enel\s+Energie\s+Muntenia\s+S.A"
     
 End Function
 'End of get Functions
@@ -91,8 +114,9 @@ Dim fnd As Match
     Set find_given_pattern = matches
 End Function
 
-Sub change_matches_to(matches As MatchCollection, ToChange As String)
 'Changes the matches you pass to anything you want
+Sub change_matches_to(matches As MatchCollection, ToChange As String)
+
 
 Dim fnd As Match
 
