@@ -9,7 +9,7 @@ Function isEmpty(InputText As Variant) As Boolean
     
 End Function
 
-'Checks if a word has any whitespaces
+'Checks if a list word has any whitespaces
 Function isEmpty_list(coll As Object) As Boolean
     Dim item As Variant
     For Each item In coll
